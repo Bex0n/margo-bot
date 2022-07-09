@@ -11,29 +11,25 @@ import java.lang.Thread;
 import java.util.Scanner; 
   
 public class Screenshot { 
-    public static final long serialVersionUID = 1L; 
-    //public static void main(String[] args)
-    public void makeScreenshot(String k) 
+    public static void makeScreenshot(String k) 
     { 
-        for(int i=0;i<1;i++){
-            try { 
-                Thread.sleep(2000); 
-                Robot r = new Robot(); 
+        try { 
+            Thread.sleep(500); 
+            Robot r = new Robot(); 
     
-                // It saves screenshot to desired path 
-                 String path = "C:/Users/jakub/Desktop/AutoE2/" + "capture" + ".jpg"; 
+            // It saves screenshot to desired path 
+            String path = k + ".jpg"; 
     
-                // Used to get ScreenSize and capture image 
-                Rectangle capture =  
-                new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()); 
-                BufferedImage Image = r.createScreenCapture(capture); 
-                ImageIO.write(Image, "jpg", new File(path));
-                Image = null;
-                capture = null;
-            }
-            catch (AWTException | IOException | InterruptedException ex) { 
-                System.out.println(ex); 
-            }
+            // Used to get ScreenSize and capture image 
+            Rectangle capture =  
+            new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()); 
+            BufferedImage Image = r.createScreenCapture(capture); 
+            ImageIO.write(Image, "jpg", new File(path));
+            Image = null;
+            capture = null;
+        }
+        catch (AWTException | IOException | InterruptedException ex) { 
+            System.out.println(ex); 
         } 
     } 
 } 

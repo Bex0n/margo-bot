@@ -19,6 +19,7 @@ import java.nio.file.FileSystem;
 
 
 public class AutoClickerMain {
+
     public static void main(final String[] args){
         AutoClicker action = new AutoClicker();
         Screenshot screenshot = new Screenshot();
@@ -28,19 +29,21 @@ public class AutoClickerMain {
 
         System.out.println("---AutoE2---");
 
+        Path mainPath = Paths.get(new File("").getAbsolutePath()); 
         BufferedImage image = null;
         BufferedImage pattern = null;
         File CaptureFile = new File("capture.jpg");
+        screenshot.makeScreenshot(mainPath.toString() + "/capture");
         File PatternFile = null;
-        Path path = Paths.get("C:/Users/jakub/Desktop/AutoE2/E2"); 
 
         //try to load monster file
         System.out.println("Enter the mob to camp.");
         while(true){
             String mob = scanner.nextLine();
-            path = Paths.get(path + "/" + mob);
-            if(Files.exists(path)){
-                PatternFile = new File(path + "/pattern.jpg");
+            Path mobPath = Paths.get(mainPath.toString() + "/E2/" + mob);
+            System.out.println(mobPath);
+            if(Files.exists(mobPath)){
+                PatternFile = new File(mobPath + "/pattern.jpg");
                 break;
             }
             else{
@@ -57,14 +60,8 @@ public class AutoClickerMain {
         //1409 * 790 = 1 113 110
         
         //character orientation
-        Pair character = cameraActions.main();
-        while (character.getFirst()==0){
-            System.out.println("Character not found. Scanning again in 1 second");
-            action.sleep(1000);
-            screenshot.makeScreenshot("capture");
-            character = cameraActions.main();
-        }
-        System.out.println("Character successfully scanned.");
+        Pair character = Character.scan(action);
+
         int xField = character.getFirst() - (character.getFirst()-widthbegin)/32*32;
         int yField = character.getSecond() - (character.getSecond()-heightbegin)/32*32;
         Pair firstfield = new Pair (xField,yField);
@@ -88,21 +85,6 @@ public class AutoClickerMain {
                 image = ImageIO.read(CaptureFile);
                 pattern = ImageIO.read(PatternFile);} 
             catch(Exception e){e.printStackTrace();}
-            
-            /*
-            int command = scanner.nextInt();
-            if(command == 1){
-                character = cameraActions.main();
-                if(character.getFirst()==0){
-                    System.out.println("Character not found. Returning to old calibration");
-                }
-                else{
-                xField = character.getFirst() - (character.getFirst()-widthbegin)/32*32;
-                yField = character.getSecond() - (character.getSecond()-heightbegin)/32*32;
-                firstfield = new Pair (xField,yField);
-                }
-            }
-            */
 
             for (int row = firstfield.getSecond(); row < heightend; row+=32) {
                 for (int col = firstfield.getFirst(); col < widthend; col+=32) {
