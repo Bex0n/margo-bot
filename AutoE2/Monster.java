@@ -18,7 +18,7 @@ import java.nio.file.FileSystem;
 
 public class Monster {
 
-    private static final int monsterPatternSize = 3;
+    private static final int monsterPatternSize = 7;
 
     public static BufferedImage loadMonster() {
 

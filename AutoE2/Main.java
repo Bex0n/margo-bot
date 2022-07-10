@@ -38,7 +38,6 @@ public class Main {
         {   
             BufferedImage screenshot = Screenshot.makeAndReadScreenshot();
             bot.scanForMonster(screenshot, monsterPattern);
-            System.out.println("No monster");
             bot.action.sleep(1000);
         }
 

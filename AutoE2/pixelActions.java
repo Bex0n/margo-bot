@@ -21,7 +21,7 @@ import java.awt.*;
 
 public class pixelActions{
 
-    private static final int maxPixelDifference = 22;
+    private static final int maxPixelDifference = 38;
     
     //  Return the RGB difference between pixels 
     public static int pixelDifference(Color a, Color b){
@@ -47,9 +47,7 @@ public class pixelActions{
         return sum;
     }
 
-    public static boolean matches3x3(BufferedImage image, BufferedImage pattern, int col, int row) {
-        if (pixelsDifference(image, pattern, col, row, 0, 0, 3, 3) < 400)
-            System.out.println(pixelsDifference(image, pattern, col, row, 0, 0, 3, 3));
-        return pixelsDifference(image, pattern, col, row, 0, 0, 3, 3) < (9 * maxPixelDifference);
+    public static boolean matches(BufferedImage image, BufferedImage pattern, int col, int row) {
+        return pixelsDifference(image, pattern, col, row, 0, 0, 7, 7) < (49 * maxPixelDifference);
     }
 }

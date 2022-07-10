@@ -60,7 +60,7 @@ public class AutoClicker {
     }
 
     // Make autoclicker wait x miliseconds.
-    public static void sleep(int x) {
+    public void sleep(int x) {
         try {
             Thread.sleep(x);
         } catch (Exception e) {
@@ -83,28 +83,28 @@ public class AutoClicker {
     // Press F key
     public void pressF() {
         robot.keyPress(KeyEvent.VK_F);
-        AutoClicker.sleep(shortTime());
+        sleep(shortTime());
         robot.keyRelease(KeyEvent.VK_F);
     }
 
     // Press X key
     public void pressX() {
         robot.keyPress(KeyEvent.VK_X);
-        AutoClicker.sleep(shortTime());
+        sleep(shortTime());
         robot.keyRelease(KeyEvent.VK_X);
     }
 
     // Press Z key
     public void pressZ() {
         robot.keyPress(KeyEvent.VK_Z);
-        AutoClicker.sleep(shortTime());
+        sleep(shortTime());
         robot.keyRelease(KeyEvent.VK_Z);
     }
 
     // Press S key
     public void pressS() {
         robot.keyPress(KeyEvent.VK_S);
-        AutoClicker.sleep(shortTime());
+        sleep(shortTime());
         robot.keyRelease(KeyEvent.VK_S);
     }
 
@@ -156,12 +156,12 @@ public class AutoClicker {
             Color fightpatternPixel = new Color(fightpattern.getRGB(718, 744));
             //search for white flag on the screen
             if (pixelActions.pixelDifference(fightPixel, fightpatternPixel) < 20) {
-                System.out.print("Zaatakowano E2! ");
+                System.out.println("Zaatakowano E2! ");
                 break;
             }
             //after 6 seconds return
             if (counter > 6) {
-                System.out.print("Utracono E2! ");
+                System.out.println("Utracono E2! ");
                 break;
             }
 

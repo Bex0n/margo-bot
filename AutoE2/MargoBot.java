@@ -20,7 +20,7 @@ import java.nio.file.FileSystem;
 
 public class MargoBot {
 
-    AutoClicker action;
+    public AutoClicker action;
 
     public MargoBot() {
         this.action = new AutoClicker();
@@ -40,8 +40,18 @@ public class MargoBot {
 
         for (int row = screenHeightStart; row < screenHeightEnd; row++)
             for (int column = screenWidthStart; column < screenWidthEnd; column++)
-                if(pixelActions.matches3x3(screenshot, monsterPattern, column, row))
+                if(pixelActions.matches(screenshot, monsterPattern, column, row)) {
+                    for (int i = 0; i < 7; i++) {
+                        for (int j = 0; j < 7; j++) {
+                            System.out.print(pixelActions.pixelDifference(new Color(monsterPattern.getRGB(i, j)), new Color(screenshot.getRGB(column + i, row + j))) + " ");
+                        }
+                        System.out.println();
+                    }
+                    System.out.println(column + " " + row);
                     action.enemyDetected(column, row);
+                    return;
+                }
+        System.out.println("No monster");
         return;
     }
 

@@ -20,11 +20,16 @@ public class Test {
     public static void main(final String[] args) {
         String projectPath = AutoClickerMain.projectPath();
         Path screenshotPath = Paths.get(projectPath + "/capture.jpg");
-        Path monsterPath = Paths.get(projectPath + "/E2/Alghul/pattern.jpg");
+        Path monsterPath = Paths.get(projectPath + "/E2/Szkielet rycerza/pattern.jpg");
         BufferedImage screenshot = Screenshot.readScreenshot(screenshotPath);
         BufferedImage pattern = Screenshot.readScreenshot(monsterPath);
 
-        System.out.println(pixelActions.pixelDifference(new Color(pattern.getRGB(2, 2)), new Color(screenshot.getRGB(760, 567))));
-        System.out.println(pixelActions.pixelsDifference(screenshot, pattern, 758, 565, 0, 0, 3, 3));
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 7; j++) {
+                System.out.print(pixelActions.pixelDifference(new Color(pattern.getRGB(i, j)), new Color(screenshot.getRGB(1312 + i, 350 + j))) + " ");
+            }
+            System.out.println();
+        }
+        System.out.println(pixelActions.pixelsDifference(screenshot, pattern, 1312, 350, 0, 0, 7, 7));
     }
 }

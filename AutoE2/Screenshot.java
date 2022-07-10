@@ -19,7 +19,6 @@ import java.nio.file.FileSystem;
 public class Screenshot { 
     public static void makeScreenshot(String folder) { 
         try { 
-            Thread.sleep(300); 
             Robot robot = new Robot(); 
     
             // It saves screenshot to desired path 
@@ -33,7 +32,7 @@ public class Screenshot {
             Image = null;
             capture = null;
         }
-        catch (AWTException | IOException | InterruptedException ex) { 
+        catch (AWTException | IOException ex) { 
             System.out.println(ex); 
         } 
     }
@@ -41,6 +40,7 @@ public class Screenshot {
     public static BufferedImage readScreenshot(Path path) {
         if(Files.exists(path))
             try {
+                Thread.sleep(500); 
                 return ImageIO.read(new File(path.toString()));
             }
             catch(Exception e) {
