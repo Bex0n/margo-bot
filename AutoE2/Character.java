@@ -25,6 +25,7 @@ public class Character {
 
     // Scan character once, return position (0, 0) if not found.
     public static Pair tryToScan() {
+
         BufferedImage screenshot = null;
         BufferedImage characterpattern = null;
         File CaptureFile = new File("capture.jpg");
@@ -32,9 +33,10 @@ public class Character {
 
         Screenshot.makeScreenshot("capture");
 
-        try{
+        try {
             screenshot = ImageIO.read(CaptureFile);
-            characterpattern = ImageIO.read(CharacterPatternFile);} 
+            characterpattern = ImageIO.read(CharacterPatternFile);
+        } 
         catch(Exception e){e.printStackTrace();}
 
         int screenWidthStart = 20; 
@@ -46,8 +48,8 @@ public class Character {
             for (int column = screenWidthStart; column < screenHeightEnd; column++) {
                 Color analyzedPixel = new Color(screenshot.getRGB(column, row));
                 Color characterPatternPixel = new Color(characterpattern.getRGB(characterX, characterY));
-                if(pixelActions.pixelCompare(analyzedPixel, characterPatternPixel) < 50)
-                    if(pixelActions.pixelCheck(screenshot, characterpattern, column, row, characterX, characterY, 3, 3) < 150)
+                if(pixelActions.pixelDifference(analyzedPixel, characterPatternPixel) < 50)
+                    if(pixelActions.pixelsDifference(screenshot, characterpattern, column, row, characterX, characterY, 3, 3) < 150)
                         return new Pair(column, row);
             }
 

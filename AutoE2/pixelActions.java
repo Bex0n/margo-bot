@@ -20,9 +20,11 @@ import java.io.File;
 import java.awt.*;
 
 public class pixelActions{
+
+    private static final int maxPixelDifference = 22;
     
-    //return the sum of difference in RGB values
-    public static int pixelCompare(Color a, Color b){
+    //  Return the RGB difference between pixels 
+    public static int pixelDifference(Color a, Color b){
         int Difference = 0;
         Difference += Math.abs(a.getRed()-b.getRed());
         Difference += Math.abs(a.getGreen()-b.getGreen());
@@ -30,21 +32,24 @@ public class pixelActions{
         return Difference;
     }
 
-    //check if the pixel set belongs to pattern
-    public static int pixelCheck(BufferedImage image, BufferedImage pattern, int col, int row, int pcol, int prow, int wide, int high){
+    // Return the RGB difference between set of pixels on 2 images
+    public static int pixelsDifference(BufferedImage image, BufferedImage pattern, int col, int row, int patterncol, int patternrow, int wide, int high){
         int sum = 0;
-        
-        // a - x in coordinate system
-        // b - y in coordinate system
-        int a = wide;
-        int b = high;
-        for(int i=0; i<a; i++){
-            for(int j=0; j<b; j++){
-                Color d = new Color(image.getRGB(col+i, row+j));
-                Color e = new Color(pattern.getRGB(pcol+i, prow+j));
-                sum += pixelCompare(d,e);
+    
+        for(int i = 0; i < wide; i++) {
+            for(int j = 0; j < high; j++) {
+                Color imagePixel = new Color(image.getRGB(col + i, row + j));
+                Color patternPixel = new Color(pattern.getRGB(patterncol + i, patternrow + j));
+                sum += pixelDifference(imagePixel, patternPixel);
             }
         }
+
         return sum;
+    }
+
+    public static boolean matches3x3(BufferedImage image, BufferedImage pattern, int col, int row) {
+        if (pixelsDifference(image, pattern, col, row, 0, 0, 3, 3) < 400)
+            System.out.println(pixelsDifference(image, pattern, col, row, 0, 0, 3, 3));
+        return pixelsDifference(image, pattern, col, row, 0, 0, 3, 3) < (9 * maxPixelDifference);
     }
 }

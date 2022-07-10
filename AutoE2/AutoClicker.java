@@ -22,21 +22,30 @@ import java.awt.*;
 
 public class AutoClicker {
 
-    private static Robot robot;
-    private static int delay;
-    private static int short_delay;
+    private Robot robot;
+    private int delay;
+    private int short_delay;
+    private int long_delay;
 
     // Return random value in miliseconds around average click time.
-    public static int shortTime() {
+    public int shortTime() {
         Random random = new Random();
         return short_delay + random.nextInt(20);
     }
 
     // Return random value in miliseconds around average post-click time.
-    public static int normalTime() {
+    public int normalTime() {
         Random random = new Random();
         return delay + random.nextInt(100);
     }
+
+    // Return random value in miliseconds around 1 second.
+    public int longTime() {
+        Random random = new Random();
+        return long_delay + random.nextInt(400);
+    }
+
+    
 
     // Create new autoclicker.
     public AutoClicker() {
@@ -47,6 +56,7 @@ public class AutoClicker {
         }
         this.delay = 250;
         this.short_delay = 30;
+        this.long_delay = 800;
     }
 
     // Make autoclicker wait x miliseconds.
@@ -59,7 +69,7 @@ public class AutoClicker {
     }
 
     // Press mouse button.
-    public static void clickMouse(int button) {
+    public void clickMouse(int button) {
         try {
             robot.mousePress(button);
             robot.delay(shortTime());
@@ -71,40 +81,40 @@ public class AutoClicker {
     }
 
     // Press F key
-    public static void pressF() {
+    public void pressF() {
         robot.keyPress(KeyEvent.VK_F);
         AutoClicker.sleep(shortTime());
         robot.keyRelease(KeyEvent.VK_F);
     }
 
     // Press X key
-    public static void pressX() {
+    public void pressX() {
         robot.keyPress(KeyEvent.VK_X);
         AutoClicker.sleep(shortTime());
         robot.keyRelease(KeyEvent.VK_X);
     }
 
     // Press Z key
-    public static void pressZ() {
+    public void pressZ() {
         robot.keyPress(KeyEvent.VK_Z);
-        AutoClicker.sleep(GenerateRandom.main(20, 40));
+        AutoClicker.sleep(shortTime());
         robot.keyRelease(KeyEvent.VK_Z);
     }
 
     // Press S key
-    public static void pressS() {
+    public void pressS() {
         robot.keyPress(KeyEvent.VK_S);
-        AutoClicker.sleep(GenerateRandom.main(20, 40));
+        AutoClicker.sleep(shortTime());
         robot.keyRelease(KeyEvent.VK_S);
     }
 
     // Set delay.
-    public static void setDelay(int ms) {
+    public void setDelay(int ms) {
         delay = ms;
     }
 
     // Move cursor to position (x, y).
-    public static void cursorMove(int xCoord, int yCoord) {
+    public void cursorMove(int xCoord, int yCoord) {
         try {
             Robot robot = new Robot();
             robot.mouseMove(xCoord, yCoord);
@@ -114,11 +124,11 @@ public class AutoClicker {
     }
 
     // Attack a monster on position (x, y).
-    public static void attack(int x, int y) {
+    public void attack(int x, int y) {
         // Create time and screenshot class
         long startTime = System.nanoTime();
         Screenshot screenshot = new Screenshot();
-        AutoClicker.setDelay(75);
+        setDelay(75);
 
         // Set path to fight screenshots
         BufferedImage fight = null;
@@ -127,15 +137,15 @@ public class AutoClicker {
         File FightpatternFile = new File("fightpattern.jpg");
 
         // Move cursor and attack
-        AutoClicker.cursorMove(x, y);
-        AutoClicker.sleep(normalTime());
-        AutoClicker.clickMouse(InputEvent.BUTTON1_DOWN_MASK);
+        cursorMove(x, y);
+        sleep(normalTime());
+        clickMouse(InputEvent.BUTTON1_DOWN_MASK);
 
         // Check if the monster has been attacked by my character
         int counter = 0;
         while (true) {
             //load screenshot and pattern
-            screenshot.makeScreenshot("fight");
+            Screenshot.makeScreenshot("fight");
             try {
                 fight = ImageIO.read(FightFile);
                 fightpattern = ImageIO.read(FightpatternFile);
@@ -145,7 +155,7 @@ public class AutoClicker {
             Color fightPixel = new Color(fight.getRGB(718, 744));
             Color fightpatternPixel = new Color(fightpattern.getRGB(718, 744));
             //search for white flag on the screen
-            if (pixelActions.pixelCompare(fightPixel, fightpatternPixel) < 20) {
+            if (pixelActions.pixelDifference(fightPixel, fightpatternPixel) < 20) {
                 System.out.print("Zaatakowano E2! ");
                 break;
             }
@@ -155,32 +165,28 @@ public class AutoClicker {
                 break;
             }
 
-            AutoClicker.sleep(GenerateRandom.main(800, 1100));
+            sleep(longTime());
             counter++;
         }
 
-        //output time
-        LocalTime.main(null);
-
         //enable fast fight
-        AutoClicker.pressF();
-        AutoClicker.sleep(GenerateRandom.main(1000, 1300));
+        pressF();
+        sleep(longTime());
 
         //close fight window
-        AutoClicker.pressZ();
-        AutoClicker.sleep(GenerateRandom.main(1000, 1300));
+        pressZ();
+        sleep(longTime());
 
         //move cursor to safe position
-        AutoClicker.cursorMove(400, 1000);
+        cursorMove(400, 1000);
 
         //character front must be visible
-        AutoClicker.pressS();
+        pressS();
     }
 
     //output enemy and time , attack
-    public static void enemyDetected(int xEnemy, int yEnemy) {
-        System.out.println("Wykryto E2!");
-        LocalTime.main(null);
-        AutoClicker.attack(xEnemy, yEnemy);
+    public void enemyDetected(int xEnemy, int yEnemy) {
+        System.out.println("Monster Detected!");
+        attack(xEnemy, yEnemy);
     }
 }
