@@ -6,13 +6,32 @@
 
 ## What is this? 🤔
 
-This is an image repository created for
-the [Shopify Developer Intern Challenge](https://docs.google.com/document/d/1ZKRywXQLZWOqVOHC4JkF3LqdpO3Llpfk_CkZPR8bjak)
+This is an addon to [Margonem](https://docs.google.com/document/d/1ZKRywXQLZWOqVOHC4JkF3LqdpO3Llpfk_CkZPR8bjak) - the largest
+internet polish MMORPG game. It automatically attacks chosen monster whenever it spawns.
 
-## Quick Start :rocket:
+THIS IS ONLY INTENDED FOR RESEARCH PURPOSES.
 
-I recommend looking first checking out the [live demo](https://abdullaharif.tech/image_repository) \
-To run locally, clone this repository and run `npm start`. Then open up [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## How to run
+
+Program has been tested on Windows.
+
+1. Setup.
+* you must have Java Development Kit installed.
+* set path to jdk bin folder in user's enviroment variables (for example C:\Program Files\Java\jdk-18.0.1.1\bin).
+
+2. Add monster to program's database.
+* make screenshot by launching MakeScreenshot.bat
+* find 7x7 pixel square covering monster's body defined by it's left upper corner pixel
+* launch RunMonsterCreation 
+* set monster's name
+* set screenshot's file (default capture.jpg)
+* set left upper corner pixel coordinates
+
+3. Run program
+* launch RunProgram
+* enter monster's name
+* launch Margonem game and make it visible on entire screen (just fullscreen, NOT F11 MODE)
+* program will attack monster when it spawns
 
 ## Features :eyes:
 
@@ -92,6 +111,3 @@ To run locally, clone this repository and run `npm start`. Then open up [http://
     * Allow users to search public files by tags
     * Allow users to search files in their organization
 
-## References :books:
-
-[Space background](https://wallpaperaccess.com/4k-space)
