@@ -6,7 +6,7 @@
 
 ## What is this? 🤔
 
-This is an addon to [Margonem](https://docs.google.com/document/d/1ZKRywXQLZWOqVOHC4JkF3LqdpO3Llpfk_CkZPR8bjak) - the largest
+This is an addon to [Margonem](https://www.margonem.pl) - the largest
 internet polish MMORPG game. It automatically attacks chosen monster whenever it spawns.
 
 THIS IS ONLY INTENDED FOR RESEARCH PURPOSES.
