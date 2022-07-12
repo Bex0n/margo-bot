@@ -1,6 +1,6 @@
 # Margonem Bot
 
-![MIT license](https://img.shields.io/github/license/Bex0n/margonem-autoe2-bot?style=for-the-badge)](https://lbesson.mit-license.org/)
+[![MIT license](https://img.shields.io/github/license/Bex0n/margonem-autoe2-bot?style=for-the-badge)](https://lbesson.mit-license.org/)
 ![lines of code](https://img.shields.io/tokei/lines/github/Bex0n/margonem-autoe2-bot?style=for-the-badge)
 ![Top Language](https://img.shields.io/github/languages/top/Bex0n/margonem-autoe2-bot?style=for-the-badge)
 
