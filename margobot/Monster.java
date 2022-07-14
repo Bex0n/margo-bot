@@ -27,7 +27,7 @@ public class Monster {
         System.out.println("Enter the mob to camp.");
         while(true){
             String monster = scanner.nextLine();
-            String monsterPath = AutoClickerMain.projectPath() + "/E2/" + monster + "/pattern.jpg";
+            String monsterPath = MargoBot.projectPath() + "/mobs/" + monster + "/pattern.jpg";
 
             if(Files.exists(Paths.get(monsterPath))){
                 BufferedImage monsterImage = null;
@@ -48,7 +48,7 @@ public class Monster {
     }
 
     public static void createMonster(String name, String screenshotPath, int pixelX, int pixelY) {
-        File monsterFolder = new File(AutoClickerMain.projectPath() + "/E2/" + name);
+        File monsterFolder = new File(MargoBot.projectPath() + "/mobs/" + name);
         String monsterPath = monsterFolder.getAbsolutePath() + "/pattern.jpg";
 
         if (monsterFolder.exists()) {

@@ -52,7 +52,7 @@ public class Screenshot {
 
     public static BufferedImage makeAndReadScreenshot() {
         Screenshot.makeScreenshot("capture");
-        String projectPath = AutoClickerMain.projectPath();
+        String projectPath = MargoBot.projectPath();
         Path screenshotPath = Paths.get(projectPath + "/capture.jpg");
         BufferedImage screenshot = Screenshot.readScreenshot(screenshotPath);
 
