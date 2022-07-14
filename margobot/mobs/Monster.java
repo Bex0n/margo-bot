@@ -1,3 +1,5 @@
+package mobs;
+
 import java.awt.event.InputEvent;
 import java.lang.Thread;
 import java.util.Scanner;
@@ -20,6 +22,11 @@ public class Monster {
 
     private static final int monsterPatternSize = 7;
 
+    public static String mainDirectory() {
+        File empty = new File("");
+        return empty.getAbsolutePath();
+    }
+
     public static BufferedImage loadMonster() {
 
         Scanner scanner = new Scanner(System.in);
@@ -27,7 +34,7 @@ public class Monster {
         System.out.println("Enter the mob to camp.");
         while(true){
             String monster = scanner.nextLine();
-            String monsterPath = MargoBot.projectPath() + "/mobs/" + monster + "/pattern.jpg";
+           String monsterPath = mainDirectory() + "/mobs/" + monster + "/pattern.jpg";
 
             if(Files.exists(Paths.get(monsterPath))){
                 BufferedImage monsterImage = null;
@@ -48,8 +55,8 @@ public class Monster {
     }
 
     public static void createMonster(String name, String screenshotPath, int pixelX, int pixelY) {
-        File monsterFolder = new File(MargoBot.projectPath() + "/mobs/" + name);
-        String monsterPath = monsterFolder.getAbsolutePath() + "/pattern.jpg";
+        File monsterFolder = new File(mainDirectory() + "\\" + "mobs" + "\\" + name);
+        String monsterPath = monsterFolder.getAbsolutePath() + "\\pattern.jpg";
 
         if (monsterFolder.exists()) {
             System.out.println("Directory already exists.");

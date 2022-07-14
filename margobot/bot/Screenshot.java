@@ -1,3 +1,5 @@
+package bot;
+
 import java.awt.event.InputEvent;
 import java.lang.Thread;
 import java.util.Scanner;
@@ -51,9 +53,9 @@ public class Screenshot {
     }
 
     public static BufferedImage makeAndReadScreenshot() {
-        Screenshot.makeScreenshot("capture");
+        makeScreenshot(new File(MargoBot.projectPath() + "/bot/screen/capture").getAbsolutePath());
         String projectPath = MargoBot.projectPath();
-        Path screenshotPath = Paths.get(projectPath + "/capture.jpg");
+        Path screenshotPath = Paths.get(projectPath + "/bot/screen/capture.jpg");
         BufferedImage screenshot = Screenshot.readScreenshot(screenshotPath);
 
         return screenshot;
@@ -67,7 +69,7 @@ public class Screenshot {
         catch (InterruptedException ex) { 
             System.out.println(ex); 
         } 
-        makeScreenshot(new File("capture").getAbsolutePath());
+        makeScreenshot(new File(MargoBot.projectPath() + "/bot/screen/capture").getAbsolutePath());
         System.out.println("Screenshot done.");
     }
 } 

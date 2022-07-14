@@ -16,6 +16,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.FileSystem;
 
+import mobs.*;
+import bot.*;
+
 public class Main {
     public static void main(final String[] args) {
         MargoBot bot = new MargoBot();
@@ -24,9 +27,6 @@ public class Main {
 
         // Get monster information.
         BufferedImage monsterPattern = Monster.loadMonster();
-
-        // Get character coordinates - (x, y).
-        // Pair character = Character.scan(action);
 
         // Start program.
         System.out.println("The program is starting in 3 seconds.");

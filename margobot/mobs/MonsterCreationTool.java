@@ -1,3 +1,5 @@
+package mobs;
+
 import java.awt.event.InputEvent;
 import java.lang.Thread;
 import java.util.Scanner;

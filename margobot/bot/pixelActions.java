@@ -1,3 +1,5 @@
+package bot;
+
 import java.awt.AWTException;
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -48,6 +50,10 @@ public class pixelActions{
     }
 
     public static boolean matches(BufferedImage image, BufferedImage pattern, int col, int row) {
-        return pixelsDifference(image, pattern, col, row, 0, 0, 7, 7) < (49 * maxPixelDifference);
+        return pixelsDifference(image, pattern, col, row, 0, 0, 7, 7) < 49 * maxPixelDifference;
+    }
+
+    public static boolean matchesPixel(BufferedImage image, BufferedImage pattern, int col, int row) {
+        return pixelsDifference(image, pattern, col, row, 0, 0, 2, 2) < 4 * maxPixelDifference;
     }
 }

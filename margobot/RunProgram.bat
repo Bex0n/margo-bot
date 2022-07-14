@@ -1,4 +1,4 @@
 @echo off
-javac Main.java Margobot.java Character.java Monster.java Screenshot.java pixelActions.java
+javac mobs\Monster.java Main.java bot\Margobot.java bot\Character.java bot\Screenshot.java bot\pixelActions.java bot\AutoClicker.java
 java Main
 pause

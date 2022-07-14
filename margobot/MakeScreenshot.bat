@@ -1,4 +1,4 @@
 @echo off
-javac Screenshot.java
-java Screenshot
+javac bot/Screenshot.java
+java bot/Screenshot
 pause

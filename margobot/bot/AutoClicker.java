@@ -1,3 +1,5 @@
+package bot;
+
 import java.awt.AWTException;
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -44,8 +46,6 @@ public class AutoClicker {
         Random random = new Random();
         return long_delay + random.nextInt(400);
     }
-
-    
 
     // Create new autoclicker.
     public AutoClicker() {
@@ -121,72 +121,5 @@ public class AutoClicker {
         } catch (AWTException e) {
             System.out.println("Low level input control is not allowed " + e.getMessage());
         }
-    }
-
-    // Attack a monster on position (x, y).
-    public void attack(int x, int y) {
-        // Create time and screenshot class
-        long startTime = System.nanoTime();
-        Screenshot screenshot = new Screenshot();
-        setDelay(75);
-
-        // Set path to fight screenshots
-        BufferedImage fight = null;
-        BufferedImage fightpattern = null;
-        File FightFile = new File("fight.jpg");
-        File FightpatternFile = new File("fightpattern.jpg");
-
-        // Move cursor and attack
-        cursorMove(x, y);
-        sleep(normalTime());
-        clickMouse(InputEvent.BUTTON1_DOWN_MASK);
-
-        // Check if the monster has been attacked by my character
-        int counter = 0;
-        while (true) {
-            //load screenshot and pattern
-            Screenshot.makeScreenshot("fight");
-            try {
-                fight = ImageIO.read(FightFile);
-                fightpattern = ImageIO.read(FightpatternFile);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            Color fightPixel = new Color(fight.getRGB(718, 744));
-            Color fightpatternPixel = new Color(fightpattern.getRGB(718, 744));
-            //search for white flag on the screen
-            if (pixelActions.pixelDifference(fightPixel, fightpatternPixel) < 20) {
-                System.out.println("Zaatakowano E2! ");
-                break;
-            }
-            //after 6 seconds return
-            if (counter > 6) {
-                System.out.println("Utracono E2! ");
-                break;
-            }
-
-            sleep(longTime());
-            counter++;
-        }
-
-        //enable fast fight
-        pressF();
-        sleep(longTime());
-
-        //close fight window
-        pressZ();
-        sleep(longTime());
-
-        //move cursor to safe position
-        cursorMove(400, 1000);
-
-        //character front must be visible
-        pressS();
-    }
-
-    //output enemy and time , attack
-    public void enemyDetected(int xEnemy, int yEnemy) {
-        System.out.println("Monster Detected!");
-        attack(xEnemy, yEnemy);
     }
 }
