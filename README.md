@@ -1,4 +1,4 @@
-# Margonem Bot
+# Margonem Autofighter
 
 [![MIT license](https://img.shields.io/github/license/Aarif123456/image_repository?style=for-the-badge)](https://lbesson.mit-license.org/)
 ![lines of code](https://img.shields.io/tokei/lines/github/Bex0n/margonem-autoe2-bot?style=for-the-badge)
