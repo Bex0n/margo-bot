@@ -40,20 +40,11 @@ public class MargoBot {
 
         for (int row = screenHeightStart; row < screenHeightEnd; row++)
             for (int column = screenWidthStart; column < screenWidthEnd; column++)
-                attack(100, 100);
-                // if(pixelActions.matches(screenshot, monsterPattern, column, row)) {
-                //     for (int i = 0; i < 7; i++) {
-                //         for (int j = 0; j < 7; j++) {
-                //             System.out.print(pixelActions.pixelDifference(new Color(monsterPattern.getRGB(i, j)), new Color(screenshot.getRGB(column + i, row + j))) + " ");
-                //         }
-                //         System.out.println();
-                //     }
-                //     System.out.println(column + " " + row);
-                //     System.out.println("Monster Detected!");
-                //     attack(column, row);
-                //     return;
-                // }
-        System.out.println("No monster");
+                if(pixelActions.matches(screenshot, monsterPattern, column, row)) {
+                    System.out.println("Monster Detected!");
+                    attack(column, row);
+                    return;
+                }
         return;
     }
 
@@ -88,7 +79,7 @@ public class MargoBot {
                 e.printStackTrace();
             }
             // Search for fight pixels on the screenshot.
-            if (pixelActions.matchesPixel(fight, fightpattern, 718, 744)) {
+            if (pixelActions.matchesPixel(fight, fightpattern, 717, 748)) {
                 System.out.println("Zaatakowano E2! ");
                 break;
             }
