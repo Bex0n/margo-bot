@@ -1,7 +1,4 @@
-# Margonem Autofighter
-
-[![MIT license](https://img.shields.io/github/license/Aarif123456/image_repository?style=for-the-badge)](https://lbesson.mit-license.org/)
-![Top Language](https://img.shields.io/github/languages/top/Bex0n/margo-bot?style=for-the-badge)
+# Margo-bot
 
 ## What is this? 🤔
 
